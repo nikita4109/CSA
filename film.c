@@ -6,6 +6,7 @@ char *ReadString(FILE *file);
 char *RandomString();
 int RandomInt(int max);
 
+// Ctr for film.
 struct film *CtrFilm(int year, char *title) {
     struct film *film = malloc(sizeof(struct film));
     film->year = year;
@@ -14,6 +15,7 @@ struct film *CtrFilm(int year, char *title) {
     return film;
 }
 
+// Dtr for film.
 void DtrFilm(struct film *film) {
     if (film->type == DRAMA) {
         DtrDrama(&film->drama);
@@ -30,12 +32,14 @@ void DtrFilm(struct film *film) {
     film = NULL;
 }
 
+// Special function.
 int Calculate(struct film *film) {
     int length = (int) strlen(film->title);
 
     return film->year / length;
 }
 
+// Read film from file.
 struct film *ReadFilm(FILE *file) {
     int year;
     fscanf(file, "%d", &year);
@@ -54,9 +58,12 @@ struct film *ReadFilm(FILE *file) {
         ReadDocumentary(file, film);
     }
 
+	free(type);
+
     return film;
 }
 
+// Write film to file.
 void WriteFilm(FILE *file, struct film *film) {
     fprintf(file, "%d", film->year);
     fprintf(file, "%s%s%s", " ", film->title, " ");
@@ -70,6 +77,7 @@ void WriteFilm(FILE *file, struct film *film) {
     }
 }
 
+// Create random film.
 struct film* RandomFilm() {
     struct film* film = CtrFilm(RandomInt(150) + 1900, RandomString());
 

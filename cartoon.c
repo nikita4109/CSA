@@ -1,5 +1,6 @@
 #include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
 #include "cartoon.h"
 #include "film.h"
 
@@ -29,6 +30,8 @@ void ReadCartoon(FILE *file, struct film *film) {
     } else if (strcmp(animation, "claymotion") == 0) {
         film->cartoon.animation = CLAYMATION;
     }
+
+    free(animation);
 }
 
 // Write cartoon to file.

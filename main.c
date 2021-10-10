@@ -45,6 +45,8 @@ int main(int argc, char *argv[]) {
         return 2;
     }
 
+	clock_t time_start = clock();
+
     struct container *container = NULL;
 
 // First part
@@ -85,6 +87,9 @@ int main(int argc, char *argv[]) {
 		DtrContainer(container);
 		container = NULL;
 	}
+
+	clock_t time_end = clock() - time_start;
+	printf("%f%s", (double)time_end / CLOCKS_PER_SEC, "\n");
 
     return 0;
 }
