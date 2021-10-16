@@ -1,0 +1,26 @@
+int: 4
+char*: 8
+
+struct film {
+union: 8 [0]
+enum type: 4 [8]
+int year: 4 [12]
+char* title: 8 [16]
+}
+
+struct container {
+int length: 4 [0]
+film** films: 8 [4]
+}
+
+struct drama {
+char* director: 8 [0]
+}
+
+struct documentary {
+int duration: 4 [0]
+}
+
+struct cartoon {
+enum animation: 4 [0]
+}
