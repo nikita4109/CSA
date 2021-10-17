@@ -1,5 +1,6 @@
 #include <cstring>
 #include "film.h"
+#include <cstdlib>
 
 char *ReadString(FILE *file);
 char *RandomString();
@@ -14,7 +15,7 @@ film::film(int year, char *title) {
 }
 
 film::~film() {
-    delete title;
+    free(title);
     title = nullptr;
 }
 

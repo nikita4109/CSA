@@ -17,6 +17,8 @@ public:
 
     // Write documentary to file.
     void Write(FILE *file) override;
+
+    void Random() override;
 };
 
 #endif

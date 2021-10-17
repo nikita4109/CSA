@@ -6,19 +6,16 @@
 #include <cstring>
 #include <random>
 
-std::random_device rd;
-std::mt19937 rnd(rd());
-
 // Read string until whitespace.
 char *ReadString(FILE *file) {
     int size = 1, len = 0, c;
     char *str;
 
-    str = new char[size];
+    str = (char *)malloc(sizeof(char) * size);
 
     int skipSpaces = 1;
     while ((c = fgetc(file)) != EOF) {
-        if (c == ' ') {
+        if (c == ' ' || c == '\n') {
             if (skipSpaces) {
                 continue;
             } else {
@@ -42,7 +39,7 @@ char *ReadString(FILE *file) {
 
 // Create random int less than max.
 int RandomInt(int max) {
-    return ((int)rnd()) % max;
+    return ((int)rand()) % max;
 }
 
 // Create random string.

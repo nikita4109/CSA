@@ -1,4 +1,5 @@
 #include "documentary.h"
+#include <cstdlib>
 
 // Read documentary from file.
 void documentary::Read(FILE *file) {
@@ -8,6 +9,12 @@ void documentary::Read(FILE *file) {
 
 // Write documentary to file.
 void documentary::Write(FILE *file) {
+    fprintf(file, "%s", "documentary ");
     film::Write(file);
-    fprintf(file, "%s%d%s", "documentary ", duration, " ");
+    fprintf(file, "%d%s", duration, " ");
+}
+
+void documentary::Random() {
+	film::Random();
+	duration = rand() % 400;
 }

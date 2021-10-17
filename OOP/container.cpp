@@ -1,5 +1,11 @@
 #include "container.h"
 #include "film.h"
+#include <cstring>
+#include "drama.h"
+#include "documentary.h"
+#include "cartoon.h"
+
+char* ReadString(FILE*);
 
 container::container(int length) {
     this->length = length;
@@ -20,7 +26,20 @@ void container::Read(FILE *file) {
 
     films = new film *[length];
     for (int i = 0; i < length; ++i) {
-        films[i]->Read(file);
+		char* type = ReadString(file);
+
+		if (strcmp(type, "drama") == 0) {
+			films[i] = new drama();
+		} else if (strcmp(type, "cartoon") == 0) {
+			films[i] = new cartoon();
+		} else if (strcmp(type, "documentary") == 0) {
+			films[i] = new documentary();
+		} else {
+			exit(1);
+		}
+
+    	films[i]->Read(file);
+        free(type);
     }
 }
 
@@ -39,6 +58,15 @@ void container::Random(int size) {
     films = new film *[length];
 
     for (int i = 0; i < size; ++i) {
+        int type = rand() % 3;
+        if (type == 0) {
+            films[i] = new drama();
+        } else if (type == 1) {
+            films[i] = new documentary();
+        } else if (type == 2) {
+            films[i] = new cartoon();
+        }
+
         films[i]->Random();
     }
 
