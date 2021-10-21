@@ -19,7 +19,7 @@ void cartoon::Write(FILE *file) {
 
 void Set(char *&animation, const char *str) {
     int len = strlen(str);
-    animation = new char[len + 1];
+    animation = (char *)malloc(sizeof(char) * (len + 1));
     for (int i = 0; i < len; ++i) {
         animation[i] = str[i];
     }
@@ -41,6 +41,6 @@ void cartoon::Random() {
 }
 
 cartoon::~cartoon() {
-    free(animation);
+	free(animation);
 }
 

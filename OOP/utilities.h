@@ -45,7 +45,7 @@ int RandomInt(int max) {
 // Create random string.
 char *RandomString() {
     int size = RandomInt(10) + 1;
-    char *string = new char[size + 1];
+    char *string = (char *)malloc(sizeof(char) * (size + 1));
     string[size] = '\0';
 
     for (int i = 0; i < size; ++i) {
