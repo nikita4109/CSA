@@ -1,0 +1,28 @@
+Можно было добавить еще виртуальные методы, но про это не говорили вроде.
+
+int: 4
+char*: 8
+
+class film {
+union: 8 [0]
+enum type: 4 [8]
+int year: 4 [12]
+char* title: 8 [16]
+}
+
+class container {
+int length: 4 [0]
+film** films: 8 [4]
+}
+
+class drama {
+char* director: 8 [0]
+}
+
+class documentary {
+int duration: 4 [0]
+}
+
+class cartoon {
+char* animation: 8 [0]
+}

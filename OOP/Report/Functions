@@ -1,0 +1,23 @@
+main {
+int argc: 4 [0]
+char** argv: 8 [4]
+int isFile: 4 [12]
+int size: 4 [16]
+clock_t time_start: 4 [20]
+container container: 12 [24]
+FILE* file: 8 [36]
+clock_t time_end: 4 [44]
+}
+
+container::Read {
+FILE* file: 8 [0]
+char* type: 8 [8]
+}
+
+film::Read {
+FILE* file: 8 [0]
+}
+
+film::Write {
+FILE* film: 8 [0]
+}
