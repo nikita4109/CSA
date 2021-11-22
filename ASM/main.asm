@@ -112,8 +112,6 @@ main:
 	mov rbx, QWORD [rbp - 24]
 	call dtrContainer
 
-.exit:
-
 	call clock
 	sub rax, QWORD [rbp - 32]
 
@@ -122,7 +120,7 @@ main:
 
 	mov rbx, new_line
 	call writeString
-
+.exit:
 	leave
 	ret
 
