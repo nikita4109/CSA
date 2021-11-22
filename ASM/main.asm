@@ -6,6 +6,7 @@ section .data
 	new_line_string db 10, 0
 	space_string db " ", 0
 	err_string db "Incorrect format!", 10, 0
+	file_exist_string db "File does not exist!", 10, 0
 	ok_string db "Ok!", 10, 0
 
 	new_line db 10, 0
@@ -29,20 +30,29 @@ section .text
 	extern realloc
 	extern fclose
 	extern rand
+	extern exit
+	extern clock
 
 ; int argc @ rdi
 ; char **argv @ rsi
 main:
-; int argc @ [rbp - 8]
-; char **argv @ [rbp - 16]
-; container *container @ [rbp - 24]
+; int argc @ rbp - 8
+; char **argv @ rbp - 16
+; container *container @ rbp - 24
+; int start_time @ rbp - 32
 
 	push rbp
 	mov rbp, rsp
-	sub rsp, 24
+	sub rsp, 32
 
 	mov [rbp - 8], rdi
 	mov [rbp - 16], rsi
+
+	call clock
+	mov QWORD [rbp - 32], rax
+
+	mov rdi, [rbp - 8]
+	mov rsi, [rbp - 16]
 
 	cmp rdi, 5
 	je .correctFormat
@@ -103,6 +113,16 @@ main:
 	call dtrContainer
 
 .exit:
+
+	call clock
+	sub rax, QWORD [rbp - 32]
+
+	mov rbx, rax
+	call writeInt
+
+	mov rbx, new_line
+	call writeString
+
 	leave
 	ret
 
@@ -121,6 +141,17 @@ readFromFile:
 	mov rdi, rbx
 	call fopen
 
+	cmp rax, 0
+	jne .fileExist
+
+
+	mov rbx, file_exist_string
+	call writeString
+
+	mov rdi, 1
+	call exit
+
+.fileExist:
 	mov QWORD [rbp - 8], rax
 
 	mov rbx, rax
