@@ -1,0 +1,3 @@
+/home/nikita/CSA/Threads/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/nikita/CSA/Threads/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/nikita/CSA/Threads/cmake-build-debug/CMakeFiles/Threads.dir

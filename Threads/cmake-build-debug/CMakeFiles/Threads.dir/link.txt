@@ -1,0 +1,1 @@
+/usr/bin/g++-11 -pthread -g -fno-omit-frame-pointer -fsanitize=address -Wall -Werror -fno-sanitize-recover=all CMakeFiles/Threads.dir/main.cpp.o CMakeFiles/Threads.dir/Thief.cpp.o CMakeFiles/Threads.dir/Loader.cpp.o CMakeFiles/Threads.dir/Accountant.cpp.o CMakeFiles/Threads.dir/Storage.cpp.o CMakeFiles/Threads.dir/Container.cpp.o -o Threads 
