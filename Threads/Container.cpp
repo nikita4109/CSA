@@ -30,6 +30,7 @@ bool Container::empty() {
 void Container::finish() {
     std::lock_guard lock(mutex_);
     finished_ = true;
+    condition_.notify_all();
 }
 
 bool Container::finished() {
